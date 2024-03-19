@@ -16,7 +16,7 @@ export default function Signin(){
 
     const submitForm = () => {
         setLoading(true);
-        axios.post('https://cv-maker-q8a2.onrender.com/signin',{},{
+        axios.post('http://localhost:8001/signin',{},{
             headers : {
                 gmail : gmail,
                 password : password
@@ -24,7 +24,7 @@ export default function Signin(){
         }).then((response) => {
             localStorage.setItem('OATIT',response.data.token);
             setLoading(false);
-            navigate('/about');
+            navigate('/details');
             window.location.reload();
         }).catch((error) => {
             setLoading(false);

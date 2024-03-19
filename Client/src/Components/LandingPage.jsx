@@ -6,12 +6,9 @@ export default function LandingPage({component}){
 
 
     const [home,setHome] = useState(true);
-    const [about,setAbout] = useState(false);
-    const [pricing,setPricing] = useState(false);
     const [signin,setSignin] = useState(false);
     const [signup,setSignup] = useState(false);
-    const [restaurant,setRestaurant] = useState(false);
-    const [cinema,setCinema] = useState(false);
+    const [details,setDetails] = useState(false);
     const [show,setShow] = useState(false);
 
     const [name,setName] = useState('');
@@ -24,75 +21,32 @@ export default function LandingPage({component}){
 
     const goToHome = () => {
         setHome(true);
-        setAbout(false);
-        setPricing(false);
         setSignin(false);
         setSignup(false);
-        setCinema(false);
-        setRestaurant(false);
+        setDetails(false);
         navigate('/');
-    }
-    const goToAbout = () => {
-        setHome(false);
-        setAbout(true);
-        setPricing(false);
-        setSignin(false);
-        setSignup(false);
-        setCinema(false);
-        setRestaurant(false);
-        navigate('/about');
-    }
-    const goToPricing = () => {
-        setHome(false);
-        setAbout(false);
-        setPricing(true);
-        setSignin(false);
-        setSignup(false);
-        setCinema(false);
-        setRestaurant(false);
-        navigate('/pricing');
     }
     const goToSignup = () => {
         setHome(false);
-        setAbout(false);
-        setPricing(false);
         setSignin(false);
         setSignup(true);
-        setCinema(false);
-        setRestaurant(false);
+        setDetails(false);
         navigate('/signup');
     }
     const goToSignin = () => {
         setHome(false);
-        setAbout(false);
-        setPricing(false);
         setSignin(true);
         setSignup(false);
-        setCinema(false);
-        setRestaurant(false);
+        setDetails(false);
         navigate('/signin');
     }
 
-    const goToRestaurant = () => {
+    const goToDetails = () => {
         setHome(false);
-        setAbout(false);
-        setPricing(false);
         setSignin(false);
         setSignup(false);
-        setCinema(false);
-        setRestaurant(true);
-        navigate('/restaurant');
-    }
-
-    const goToCinema = () => {
-        setHome(false);
-        setAbout(false);
-        setPricing(false);
-        setSignin(false);
-        setSignup(false);
-        setCinema(true);
-        setRestaurant(false);
-        navigate('/cinema');
+        setDetails(true);
+        navigate('/details');
     }
 
     useEffect(()=>{
@@ -106,17 +60,8 @@ export default function LandingPage({component}){
         if(location.pathname === '/'){
             goToHome();
         }
-        else if(location.pathname === '/about'){
-            goToAbout();   
-        }
-        else if(location.pathname === '/pricing'){
-            goToPricing();
-        }
-        else if(location.pathname === '/restaurant'){
-            goToRestaurant();
-        }
-        else if(location.pathname === '/cinema'){
-            goToCinema();
+        else if(location.pathname === '/details'){
+            goToDetails();
         }
         else if(location.pathname === '/signin'){
             goToSignin();
@@ -140,29 +85,11 @@ export default function LandingPage({component}){
                             Home
                         </div>
                     </Link>
-                    <Link to="top" spy={true} smooth={true} duration={250} className="flex items-center">
-                        <div className={about ? `text-green-200 text-3xl p-2 cursor-pointer` : `text-white text-lg p-2 cursor-pointer font-semibold hover:text-slate-400`} onClick={goToAbout}>
-                            About
-                        </div>
-                    </Link>
-                    <Link to="top" spy={true} smooth={true} duration={250} className="flex items-center">
-                        <div className={pricing ? `text-green-200 text-3xl p-2 cursor-pointer` : `text-white text-lg p-2 cursor-pointer font-semibold hover:text-slate-400`} onClick={goToPricing}>
-                            Pricing
-                        </div>
-                    </Link>
                     {
                         show &&
                         <Link to="top" spy={true} smooth={true} duration={250} className="flex items-center">
-                            <div className={restaurant ? `text-green-200 text-3xl p-2 cursor-pointer` : `text-white text-lg p-2 cursor-pointer font-semibold hover:text-slate-400`} onClick={goToRestaurant}>
-                                Restaurant
-                            </div>
-                        </Link>
-                    }
-                    {
-                        show &&
-                        <Link to="top" spy={true} smooth={true} duration={250} className="flex items-center">
-                            <div className={cinema ? `text-green-200 text-3xl p-2 cursor-pointer` : `text-white text-lg p-2 cursor-pointer font-semibold hover:text-slate-400`} onClick={goToCinema}>
-                                Cinema
+                            <div className={details ? `text-green-200 text-3xl p-2 cursor-pointer` : `text-white text-lg p-2 cursor-pointer font-semibold hover:text-slate-400`} onClick={goToDetails}>
+                                Details
                             </div>
                         </Link>
                     }
@@ -172,18 +99,31 @@ export default function LandingPage({component}){
                         Contact-Us
                     </div>
                 </Link>
-                <div className="flex items-end p-2 select-none">
-                    <Link to="top" spy={true} smooth={true} duration={250} className="flex items-center">
-                        <div className={signin ? `text-green-400 text-3xl p-2 cursor-pointer` : `text-white text-lg p-2 cursor-pointer font-semibold hover:text-slate-400`} onClick={goToSignin}>
-                            SignIn
+                {
+                    !show ? 
+                    <div className="flex items-end p-2 select-none">
+                        <Link to="top" spy={true} smooth={true} duration={250} className="flex items-center">
+                            <div className={signin ? `text-green-400 text-3xl p-2 cursor-pointer` : `text-white text-lg p-2 cursor-pointer font-semibold hover:text-slate-400`} onClick={goToSignin}>
+                                SignIn
+                            </div>
+                        </Link>
+                        <Link to="top" spy={true} smooth={true} duration={250} className="flex items-center">
+                            <div className={signup ? `text-green-400 text-3xl p-2 cursor-pointer` : `text-white text-lg p-2 cursor-pointer font-semibold hover:text-slate-400`} onClick={goToSignup}>
+                                SignUp
+                            </div>
+                        </Link>
+                    </div>
+                    :
+                    <div className="flex items-end p-2 select-none">
+                        <div className={`text-white text-2xl p-2 cursor-pointer font-semibold hover:text-slate-400`} onClick={()=>{
+                            localStorage.removeItem('OATIT');
+                            navigate('/signin');
+                            window.location.reload();
+                        }}>
+                            SignOut
                         </div>
-                    </Link>
-                    <Link to="top" spy={true} smooth={true} duration={250} className="flex items-center">
-                        <div className={signup ? `text-green-400 text-3xl p-2 cursor-pointer` : `text-white text-lg p-2 cursor-pointer font-semibold hover:text-slate-400`} onClick={goToSignup}>
-                            SignUp
-                        </div>
-                    </Link>
-                </div>
+                    </div>
+                }
             </div>
             <div id="top" className="flex justify-center bg-gradient-to-b from-black via-green-700 to-black items-center h-screen">
                 {component}
@@ -226,7 +166,7 @@ export default function LandingPage({component}){
                                 <label htmlFor="text"className="select-none text-slate-300" >Description</label>
                             </div>
                             <div>
-                                <input type="text" id="text" className="outline-none w-64 h-8 p-2" onChange={(e) => setDesc(e.target.value)}/>
+                                <input type="text" id="text" className="outline-none w-64 h-8 p-2" onChange={(e) => setDesc (e.target.value)}/>
                             </div>
                         </div>
                         <div className="flex justify-center select-none">

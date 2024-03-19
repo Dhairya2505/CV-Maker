@@ -41,7 +41,7 @@ export default function Signup(){
             username : username
         }
 
-        axios.post('https://cv-maker-q8a2.onrender.com/signup',data,{
+        axios.post('http://localhost:8001/signup',data,{
             headers : {
                 gmail : gmail,
                 password : password
