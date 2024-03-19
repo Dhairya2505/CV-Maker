@@ -9,6 +9,7 @@ export default function LandingPage({component}){
     const [signin,setSignin] = useState(false);
     const [signup,setSignup] = useState(false);
     const [details,setDetails] = useState(false);
+    const [card,setCard] = useState(false);
     const [show,setShow] = useState(false);
 
     const [name,setName] = useState('');
@@ -24,6 +25,7 @@ export default function LandingPage({component}){
         setSignin(false);
         setSignup(false);
         setDetails(false);
+        setCard(false);
         navigate('/');
     }
     const goToSignup = () => {
@@ -31,6 +33,7 @@ export default function LandingPage({component}){
         setSignin(false);
         setSignup(true);
         setDetails(false);
+        setCard(false);
         navigate('/signup');
     }
     const goToSignin = () => {
@@ -38,6 +41,7 @@ export default function LandingPage({component}){
         setSignin(true);
         setSignup(false);
         setDetails(false);
+        setCard(false);
         navigate('/signin');
     }
 
@@ -46,7 +50,16 @@ export default function LandingPage({component}){
         setSignin(false);
         setSignup(false);
         setDetails(true);
+        setCard(false);
         navigate('/details');
+    }
+    const goToCard = () => {
+        setHome(false);
+        setSignin(false);
+        setSignup(false);
+        setDetails(false);
+        setCard(true);
+        navigate('/card');
     }
 
     useEffect(()=>{
@@ -63,12 +76,16 @@ export default function LandingPage({component}){
         else if(location.pathname === '/details'){
             goToDetails();
         }
+        else if(location.pathname === '/card'){
+            goToCard();
+        }
         else if(location.pathname === '/signin'){
             goToSignin();
         }
         else if(location.pathname === '/signup'){
             goToSignup();
         }
+        
 
     },[])
 
@@ -90,6 +107,14 @@ export default function LandingPage({component}){
                         <Link to="top" spy={true} smooth={true} duration={250} className="flex items-center">
                             <div className={details ? `text-green-200 text-3xl p-2 cursor-pointer` : `text-white text-lg p-2 cursor-pointer font-semibold hover:text-slate-400`} onClick={goToDetails}>
                                 Details
+                            </div>
+                        </Link>
+                    }
+                    {
+                        show &&
+                        <Link to="top" spy={true} smooth={true} duration={250} className="flex items-center">
+                            <div className={card ? `text-green-200 text-3xl p-2 cursor-pointer` : `text-white text-lg p-2 cursor-pointer font-semibold hover:text-slate-400`} onClick={goToCard}>
+                                Card
                             </div>
                         </Link>
                     }
@@ -133,7 +158,7 @@ export default function LandingPage({component}){
                     <div className="select-none" >
                         
                     </div>
-                    <div className="m-10 bg-gradient-to-b from-slate-950 to-green-700 shadow-lg shadow-gray-300/60 border-gray-300/60 border-2 rounded-lg p-5">
+                    <div className="m-10 mt-48 bg-gradient-to-b from-slate-950 to-green-700 shadow-lg shadow-gray-300/60 border-gray-300/60 border-2 rounded-lg p-5">
                         <div className="select-none flex justify-center text-slate-300 text-xl font-bold p-3" >
                             Contact Form
                         </div>

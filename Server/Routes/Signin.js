@@ -2,9 +2,7 @@ const { Router } = require('express');
 const checkUser = require('../Middlewares/checkUser.js');
 const jwt = require('jsonwebtoken');
 
-require('dotenv').config({
-    path : `${__dirname}/../../.env`
-})
+require('dotenv').config()
 
 const secretKey = process.env.SECRET_KEY;
 
