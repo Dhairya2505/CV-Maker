@@ -42,6 +42,7 @@ GetDetailsRoute.get('/',checkFromToken, async (req,res) => {
         const github = prevDetails.github;
         const linkedin = prevDetails.linkedin;
         const twitter = prevDetails.twitter;
+        const username = prsn.username;
     
         res.json({
             msg : "old user",
@@ -60,7 +61,8 @@ GetDetailsRoute.get('/',checkFromToken, async (req,res) => {
             link2 : link2,
             github : github,
             linkedin : linkedin,
-            twitter : twitter
+            twitter : twitter,
+            username : username
         })
     }
     else{

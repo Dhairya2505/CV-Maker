@@ -180,7 +180,7 @@ export default function Details(){
                         </div>
                         <div className="m-2">
                             <div className="text-slate-300 m-1 select-none">
-                                <label htmlFor="expertise">Expertises (Enter with space)</label>
+                                <label htmlFor="expertise">Skills (Enter with space)</label>
                             </div>
                             <div className="flex">
                                 <input type="text" id="expertise" value={expertise} placeholder="Enter topics you are good at" className={isReadOnly ? `w-72 h-8 outline-none p-1 bg-gray-400 placeholder:text-gray-700 placeholder:select-none cursor-pointer` : `w-72 h-8 outline-none p-1 bg-gray-300 placeholder:text-gray-500 placeholder:select-none`} onChange={(e) => setExpertise(e.target.value)} readOnly={isReadOnly}/>
@@ -303,3 +303,4 @@ export default function Details(){
         </div>
     )
 }
+

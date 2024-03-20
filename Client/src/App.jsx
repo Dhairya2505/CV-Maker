@@ -4,6 +4,7 @@ import Signin from "./Components/Signin.jsx";
 import Signup from "./Components/SignUp.jsx";
 import Details from "./Components/Details.jsx";
 import Card from "./Components/Card.jsx";
+import SharableCard from "./Components/SharableCard.jsx";
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <Route path='/about' element={<LandingPage />} />
         <Route path='/details' element={<LandingPage component={<Details />}/>} />
         <Route path='/card' element={<LandingPage component={<Card />}/>} />
+        <Route path='/Card/*' element={<SharableCard />} />
         <Route path='/signin' element={<LandingPage component={<Signin />} />} />
         <Route path='/signup' element={<LandingPage component={<Signup />} />} />
       </Routes>
@@ -22,4 +24,3 @@ function App() {
 }
 
 export default App
-

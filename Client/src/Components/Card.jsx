@@ -4,6 +4,7 @@ import axios from 'axios';
 import { IoMdCall, IoIosMail } from "react-icons/io";
 import { IoHome } from "react-icons/io5";
 import { FaGraduationCap } from "react-icons/fa";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 
 export default function Card () {
@@ -26,6 +27,9 @@ export default function Card () {
     const [github,setGithub] = useState('');
     const [linkedin,setLinkedin] = useState('');
     const [twitter,setTwitter] = useState('');
+
+    const [username,setUsername] = useState('');
+    const [copy,setCopy] = useState(false);
 
     const navigate = useNavigate();
     
@@ -68,17 +72,23 @@ export default function Card () {
                 setGithub(response.data.github);
                 setLinkedin(response.data.linkedin);
                 setTwitter(response.data.twitter);
+                setUsername(response.data.username);
             }
             
         }
         getDetail();
     },[])
 
+    const onCopy = () => {
+        setCopy(true);
+        setTimeout(() => setCopy(false), 5000);
+    }
+
     return (
         <div>
 
-            <div>
-                <div className="border-white border-2 rounded-lg bg-gradient-to-t from-slate-900 to-black to-95% text-white mt-96">
+            <div className="flex">
+                <div className="shadow-xl shadow-white/60 border-white border-2 rounded-lg bg-gradient-to-t from-slate-900 to-black to-95% text-white mt-96">
                     <div className="text-7xl px-24 p-10 flex justify-end">
                         {name}
                     </div>
@@ -118,7 +128,7 @@ export default function Card () {
                                     expertise.split(' ').map((element,index) => {
                                         return(
                                             <li key={index}>
-                                                {element}
+                                                {`${element}`}
                                             </li>
                                         )
                                     })
@@ -127,7 +137,7 @@ export default function Card () {
                             {
                                 hobby !== '' &&
                                 <div className="p-5 border-t-2 border-slate-200">
-                                    <div>
+                                    <div className="pb-2 text-lg">
                                         Hobbies
                                     </div>
                                     {
@@ -221,7 +231,11 @@ export default function Card () {
                     </div>
                     
                 </div>
-
+                <div className="mt-96">
+                    <CopyToClipboard text={`http://localhost:5173/Card/${username}`} onCopy={onCopy} >
+                        <button className="bg-blue-600 p-1 px-5 text-lg rounded-lg m-3 text-white w-28" >{copy ? "Copied!" : "Copy"}</button>
+                    </CopyToClipboard>
+                </div>
             </div>
         </div>
     )
