@@ -26,6 +26,9 @@ detailsSubmitRoute.post('/',checkFromToken,async (req,res)=>{
     const desc2 = req.body.desc2;
     const link1 = req.body.link1;
     const link2 = req.body.link2;
+    const github = req.body.github;
+    const linkedin = req.body.linkedin;
+    const twitter = req.body.twitter;
 
     
     const user = jwt.verify(token,secretKey);
@@ -57,6 +60,10 @@ detailsSubmitRoute.post('/',checkFromToken,async (req,res)=>{
             title2 : title2,
             desc2 : desc2,
             link2 : link2,
+            github : github,
+            linkedin : linkedin,
+            twitter : twitter
+
         });
     
         detail.save();
@@ -77,6 +84,9 @@ detailsSubmitRoute.post('/',checkFromToken,async (req,res)=>{
             title2 : title2,
             desc2 : desc2,
             link2 : link2,
+            github : github,
+            linkedin : linkedin,
+            twitter : twitter
         });
     }
     

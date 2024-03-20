@@ -204,7 +204,7 @@ export default function Details(){
                                 <label htmlFor="title1">Title</label>
                             </div>
                             <div className="flex">
-                                <input type="text" id="title1" value={title1} placeholder="Enter title" className={isReadOnly ? `w-72 h-8 outline-none p-1 bg-gray-400 placeholder:text-gray-700 placeholder:select-none cursor-pointer` : `w-72 h-8 outline-none p-1 bg-gray-300 placeholder:text-gray-500 placeholder:select-none`} onChange={(e) => settt(e.target.value)} readOnly={isReadOnly}/>
+                                <input type="text" id="title1" value={title1} placeholder="Enter title" className={isReadOnly ? `w-72 h-8 outline-none p-1 bg-gray-400 placeholder:text-gray-700 placeholder:select-none cursor-pointer` : `w-72 h-8 outline-none p-1 bg-gray-300 placeholder:text-gray-500 placeholder:select-none`} onChange={(e) => setTitle1(e.target.value)} readOnly={isReadOnly}/>
                                 
                             </div>
                         </div>

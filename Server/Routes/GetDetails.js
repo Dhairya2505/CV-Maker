@@ -39,6 +39,9 @@ GetDetailsRoute.get('/',checkFromToken, async (req,res) => {
         const desc2 = prevDetails.desc2;
         const link1 = prevDetails.link1;
         const link2 = prevDetails.link2;
+        const github = prevDetails.github;
+        const linkedin = prevDetails.linkedin;
+        const twitter = prevDetails.twitter;
     
         res.json({
             msg : "old user",
@@ -55,6 +58,9 @@ GetDetailsRoute.get('/',checkFromToken, async (req,res) => {
             desc2 : desc2,
             link1 : link1,
             link2 : link2,
+            github : github,
+            linkedin : linkedin,
+            twitter : twitter
         })
     }
     else{

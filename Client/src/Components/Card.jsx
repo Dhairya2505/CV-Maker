@@ -1,27 +1,31 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { IoMdCall, IoIosMail } from "react-icons/io";
+import { IoHome } from "react-icons/io5";
+import { FaGraduationCap } from "react-icons/fa";
+
 
 export default function Card () {
 
     const [token,setToken] = useState('');
 
-    const [name,setName] = useState('Dhairya Singla');
-    const [mobile,setMobile] = useState('8076311782');
-    const [address,setAddress] = useState('dhalimar garden, extn-2, shaibabad, Ghaziabad');
-    const [gmail,setGmail] = useState('dhairyasingla250504@gmail.com');
-    const [qualification,setQualification] = useState('Btech in Compouter Science');
+    const [name,setName] = useState('');
+    const [mobile,setMobile] = useState('');
+    const [address,setAddress] = useState('');
+    const [gmail,setGmail] = useState('');
+    const [qualification,setQualification] = useState('');
     const [expertise,setExpertise] = useState('');
     const [hobby,setHobby] = useState('');
-    const [title1,setTitle1] = useState('CV Maker');
+    const [title1,setTitle1] = useState('');
     const [title2,setTitle2] = useState('');
-    const [desc1,setDesc1] = useState('This is a website in which a user can signin and enter his her qualifications and achievements and the website will make a sharable CV for them.');
+    const [desc1,setDesc1] = useState('');
     const [desc2,setDesc2] = useState('');
-    const [link1,setLink1] = useState('https://CV-Maker.com');
+    const [link1,setLink1] = useState('');
     const [link2,setLink2] = useState('');
-    const [github,setGithub] = useState('https://google.com');
-    const [linkedin,setLinkedin] = useState('https://google.com');
-    const [twitter,setTwitter] = useState('https://google.com');
+    const [github,setGithub] = useState('');
+    const [linkedin,setLinkedin] = useState('');
+    const [twitter,setTwitter] = useState('');
 
     const navigate = useNavigate();
     
@@ -33,6 +37,7 @@ export default function Card () {
     }
 
     useEffect(()=>{
+        toTheTop;
         const Token = localStorage.getItem('OATIT');
         setToken(localStorage.getItem('OATIT'));
         if(!Token){
@@ -46,123 +51,175 @@ export default function Card () {
                     Authorization : Token
                 }
             })
-            if(response.data.msg === "old user"){
-                // setName(response.data.name);
-                // setMobile(response.data.mobile);
-                // setAddress(response.data.address);
-                // setGmail(response.data.gmail);
-                // setQualification(response.data.qualification);
+            if(response.data.msg === 'old user'){
+                setName(response.data.name);
+                setMobile(response.data.mobile);
+                setAddress(response.data.address);
+                setGmail(response.data.gmail);
+                setQualification(response.data.qualification);
                 setExpertise(response.data.expertise);
-                // setHobby(response.data.hobby);
-                // setTitle1(response.data.title1);
-                // setTitle2(response.data.title2);
-                // setDesc1(response.data.desc1);
-                // setDesc2(response.data.desc2);
-                // setLink1(response.data.link1);
-                // setLink2(response.data.link2); 
-                // setGithub(response.data.github);
-                // setLinkedin(response.data.linkedin);
-                // setTwitter(response.data.twitter);
-
+                setHobby(response.data.hobby);
+                setTitle1(response.data.title1);
+                setTitle2(response.data.title2);
+                setDesc1(response.data.desc1);
+                setDesc2(response.data.desc2);
+                setLink1(response.data.link1);
+                setLink2(response.data.link2); 
+                setGithub(response.data.github);
+                setLinkedin(response.data.linkedin);
+                setTwitter(response.data.twitter);
             }
             
         }
         getDetail();
-    })
+    },[])
 
     return (
         <div>
-            <div id="top" onClick={toTheTop()}>
-            </div>
 
-            
             <div>
-                <div className="bg-black text-white">
-                    <div className="text-3xl flex ">
+                <div className="border-white border-2 rounded-lg bg-gradient-to-t from-slate-900 to-black to-95% text-white mt-96">
+                    <div className="text-7xl px-24 p-10 flex justify-end">
                         {name}
                     </div>
-                    <div className="grid grid-cols-2">
-                        <div className="">
-                            <div>
-                                <div>
-                                    {mobile}
+                    <div className="grid grid-cols-2 ">
+                        <div className="w-96 p-5">
+                            <div className="p-5 border-b-2 border-slate-200">
+                                <div className="flex items-center">
+                                    <IoMdCall className="ml-2 m-1 size-5"/>
+                                    <div className="text-base">
+                                        {mobile}
+                                    </div>
                                 </div>
-                                <div>
-                                    {gmail}
+                                <div className="flex items-center">
+                                    <IoIosMail className="ml-2 m-1 size-5"/>
+                                    <div className="text-base">
+                                        {gmail}
+                                    </div>
                                 </div>
-                                <div>
-                                    {address}
+                                <div className="flex items-start">
+                                    <IoHome className="ml-2 m-1 size-5"/>
+                                    <div className="text-base">
+                                        {address}
+                                    </div>
                                 </div>
                             </div>
-                            <div>
-                                {qualification}
+                            <div className="p-5 flex border-b-2 border-slate-200">
+                                <FaGraduationCap className="ml-2 m-1 size-5"/>
+                                <div className="text-base">
+                                    {qualification}
+                                </div>
                             </div>
-                            <div>
-                                {expertise}
+                            <div className="p-5">
+                                <div className="pb-2 text-lg">
+                                    Skills
+                                </div>
+                                {
+                                    expertise.split(' ').map((element,index) => {
+                                        return(
+                                            <li key={index}>
+                                                {element}
+                                            </li>
+                                        )
+                                    })
+                                }
                             </div>
-                            <div>
-                                {hobby}
-                            </div>
+                            {
+                                hobby !== '' &&
+                                <div className="p-5 border-t-2 border-slate-200">
+                                    <div>
+                                        Hobbies
+                                    </div>
+                                    {
+                                        hobby.split(' ').map((element,index) => {
+                                            return(
+                                                <li key={index}>
+                                                    {element}
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            }
                         </div>
-                        <div>
-                            <div>
+                        <div className="p-5 border-l-2 border-slate-200">
+                            <div className="p-2 flex justify-center text-3xl">
                                 Projects
                             </div>
-                            <div>
+                            <div className="p-3">
                                 <div>
-                                    {title1}
+                                    <li className="underline text-lg font-bold">
+                                        {title1}
+                                    </li>
                                 </div>
-                                <div>
+                                <div className="w-80 text-slate-300">
                                     {desc1}
                                 </div>
                                 <div>
-                                    {link1}
+                                    <button className="bg-blue-600 p-1 px-5 text-lg rounded-lg m-3" onClick={() => {
+                                        window.open(`${link1}`,"_blank")
+                                    }}>Link</button>
                                 </div>
                             </div>
                             {
                                 title2 !=='' && desc2 !=='' && link2 !=='' &&
-                                <div>
+                                <div className="p-3">
                                     <div>
-                                        {title2}
+                                        <li className="underline text-lg font-bold">
+                                            {title2}
+                                        </li>
                                     </div>
-                                    <div>
+                                    <div className="w-80 text-slate-300">
                                         {desc2}
                                     </div>
                                     <div>
-                                        {link2}
+                                        <button className="bg-blue-600 p-1 px-5 text-lg rounded-lg m-3" onClick={() => {
+                                            window.open(`${link2}`,"_blank")
+                                        }}>Link</button>
                                     </div>
                                 </div>
                             }
                             {
-                                title2 ==='' && desc2 ==='' && link2 ==='' &&
-                                <div>
-                                    <div>
-                                        {github}
+                                (github || linkedin || twitter) &&
+                                <div className="mt-10">
+                                    <div className="text-xl">
+                                        Important Links - 
                                     </div>
-                                    <div>
-                                        {linkedin}
-                                    </div>
-                                    <div>
-                                        {twitter}
+                                    <div className="flex">
+                                        {   github &&
+                                            <div>
+                                                <button className="bg-blue-600 p-1 px-5 text-lg rounded-lg m-3" onClick={() => {
+                                                    window.open(`${github}`,"_blank")
+                                                }}>
+                                                    Github
+                                                </button>
+                                            </div>
+                                        }
+                                        {   linkedin && 
+                                            <div>
+                                                <button className="bg-blue-600 p-1 px-5 text-lg rounded-lg m-3" onClick={() => {
+                                                    window.open(`${linkedin}`,"_blank")
+                                                }}>
+                                                    Linkedin
+                                                </button>
+                                            </div>
+                                            }
+                                        {   twitter &&   
+                                            <div>
+                                                <button className="bg-blue-600 p-1 px-5 text-lg rounded-lg m-3" onClick={() => {
+                                                    window.open(`${twitter}`,"_blank")
+                                                }}>
+                                                    Twitter
+                                                </button>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             }
+                            
                         </div>
                     </div>
-                    {
-                        title2 !=='' && desc2 !=='' && link2 !=='' &&
-                        <div>
-                            <div>
-                                {github}
-                            </div>
-                            <div>
-                                {linkedin}
-                            </div>
-                            <div>
-                                {twitter}
-                            </div>
-                        </div>
-                    }
+                    
                 </div>
 
             </div>
