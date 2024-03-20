@@ -158,7 +158,7 @@ export default function LandingPage({component}){
                     <div className="select-none" >
                         
                     </div>
-                    <div className="m-10 mt-48 bg-gradient-to-b from-slate-950 to-green-700 shadow-lg shadow-gray-300/60 border-gray-300/60 border-2 rounded-lg p-5">
+                    <div className="m-10 mt-80 bg-gradient-to-b from-slate-950 to-green-700 shadow-lg shadow-gray-300/60 border-gray-300/60 border-2 rounded-lg p-5">
                         <div className="select-none flex justify-center text-slate-300 text-xl font-bold p-3" >
                             Contact Form
                         </div>

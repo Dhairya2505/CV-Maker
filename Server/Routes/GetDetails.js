@@ -26,33 +26,44 @@ GetDetailsRoute.get('/',checkFromToken, async (req,res) => {
         id : id,
     })
 
-    const name = prevDetails.name;
-    const mobile = prevDetails.mobile;
-    const address = prevDetails.address;
-    const qualification = prevDetails.qualification;
-    const expertise = prevDetails.expertise;
-    const hobby = prevDetails.hobby;
-    const title1 = prevDetails.title1;
-    const title2 = prevDetails.title2;
-    const desc1 = prevDetails.desc1;
-    const desc2 = prevDetails.desc2;
-    const link1 = prevDetails.link1;
-    const link2 = prevDetails.link2;
+    if(prevDetails){
+        const name = prevDetails.name;
+        const mobile = prevDetails.mobile;
+        const address = prevDetails.address;
+        const qualification = prevDetails.qualification;
+        const expertise = prevDetails.expertise;
+        const hobby = prevDetails.hobby;
+        const title1 = prevDetails.title1;
+        const title2 = prevDetails.title2;
+        const desc1 = prevDetails.desc1;
+        const desc2 = prevDetails.desc2;
+        const link1 = prevDetails.link1;
+        const link2 = prevDetails.link2;
+    
+        res.json({
+            msg : "old user",
+            name : name,
+            mobile : mobile,
+            address : address,
+            gmail : mail,
+            qualification : qualification,
+            expertise : expertise,
+            hobby : hobby,
+            title1 : title1,
+            title2 : title2,
+            desc1 : desc1,
+            desc2 : desc2,
+            link1 : link1,
+            link2 : link2,
+        })
+    }
+    else{
+        res.json({
+            msg : "new user"
+        })
+    }
 
-    res.json({
-        name : name,
-        mobile : mobile,
-        address : address,
-        qualification : qualification,
-        expertise : expertise,
-        hobby : hobby,
-        title1 : title1,
-        title2 : title2,
-        desc1 : desc1,
-        desc2 : desc2,
-        link1 : link1,
-        link2 : link2,
-    })
+
 
 
 })

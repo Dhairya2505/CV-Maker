@@ -21,6 +21,10 @@ export default function Details(){
     const [desc1,setDesc1] = useState('');
     const [link1,setLink1] = useState('');
     const [link2,setLink2] = useState('');
+    const [github,setGithub] = useState('');
+    const [linkedin,setLinkedin] = useState('');
+    const [twitter,setTwitter] = useState('');
+    const [error,setError] = useState('');
 
     const [isReadOnly,setIsReadOnly] = useState(true);
 
@@ -31,30 +35,69 @@ export default function Details(){
             navigate('/signin');
             window.location.reload();
         }
-        let response = 'Hello';
+        let response = '';
         async function getDetail() {
             response = await axios.get('http://localhost:8001/getDetails',{
                 headers:{
                     Authorization : Token
                 }
             })
-            setName(response.data.name);
-            setMobile(response.data.mobile);
-            setAddress(response.data.address);
-            setQualification(response.data.qualification);
-            setExpertise(response.data.expertise);
-            setHobby(response.data.hobby);
-            setTitle1(response.data.title1);
-            setTitle2(response.data.title2);
-            setDesc1(response.data.desc1);
-            setDesc2(response.data.desc2);
-            setLink1(response.data.link1);
-            setLink2(response.data.link2); 
+            if(response.data.msg === "old user"){
+                setName(response.data.name);
+                setMobile(response.data.mobile);
+                setAddress(response.data.address);
+                setQualification(response.data.qualification);
+                setExpertise(response.data.expertise);
+                setHobby(response.data.hobby);
+                setTitle1(response.data.title1);
+                setTitle2(response.data.title2);
+                setDesc1(response.data.desc1);
+                setDesc2(response.data.desc2);
+                setLink1(response.data.link1);
+                setLink2(response.data.link2); 
+                setGithub(response.data.github);
+                setLinkedin(response.data.linkedin);
+                setTwitter(response.data.twitter);
+            }
+            
         }
         getDetail();
     },[])
 
     const submitDetails = () => {
+        setError('');
+        if(name === ''){
+            setError('*Fill the name field');
+            return;
+        }
+        else if(mobile === ''){
+            setError('*Fill the mobile field');
+            return;
+        }
+        else if(address === ''){
+            setError('*Fill the address field');
+            return;
+        }
+        else if(qualification === ''){
+            setError('*Fill the qualification field');
+            return;
+        }
+        else if(expertise === ''){
+            setError('*Fill the exertise field');
+            return;
+        }
+        else if(title1 === ''){
+            setError('*Fill the first title');
+            return;
+        }
+        else if(desc1 === ''){
+            setError('*Fill the first description');
+            return;
+        }
+        else if(link1 === ''){
+            setError('*Fill the first link');
+            return;
+        }
         setIsReadOnly(true);
         const Token = localStorage.getItem('OATIT');
         const data = {
@@ -70,6 +113,9 @@ export default function Details(){
             title2 : title2,
             desc2 : desc2,
             link2 : link2,
+            github : github,
+            linkedin : linkedin,
+            twitter : twitter
         }
         axios.post('http://localhost:8001/submitDetails',data,{
             headers : {
@@ -87,7 +133,7 @@ export default function Details(){
     return(
         token ? 
         <div>
-            <div className="shadow-xl shadow-white/60 border-2 border-white/60 bg-gradient-to-t from-black to-slate-900 mt-48  p-8 rounded-xl flex flex-col items-center">
+            <div className="shadow-xl shadow-white/60 border-2 border-white/60 bg-gradient-to-t from-black to-slate-900 mt-96  p-8 rounded-xl flex flex-col items-center">
                 <div className="flex items-center text-slate-300 text-3xl">
                     Details {
                         isReadOnly && <div className="p-2 m-2 cursor-pointer border-2 bg-slate-900 border-white rounded-full hover:invert" onClick={editDetails}>
@@ -150,6 +196,7 @@ export default function Details(){
                                 
                             </div>
                         </div>
+                        
                     </div>
                     <div className="m-5">
                         <div className="m-2">
@@ -208,6 +255,39 @@ export default function Details(){
                         </div>
 
                     </div>
+                </div>
+                <div className="flex flex-col items-center px-5 pb-8">
+                    <div className="flex">
+                        <div className="m-2">
+                            <div className="text-slate-300 m-1 select-none">
+                                <label htmlFor="github">Github Link</label>
+                            </div>
+                            <div className="flex">
+                                <input type="text" id="github" value={github} placeholder="Enter your github profile link if any ..." className={isReadOnly ? `w-72 h-8 outline-none p-1 bg-gray-400 placeholder:text-gray-700 placeholder:select-none cursor-pointer` : `w-72 h-8 outline-none p-1 bg-gray-300 placeholder:text-gray-500 placeholder:select-none`} onChange={(e) => setGithub(e.target.value)} readOnly={isReadOnly}/>
+                            </div>
+                        </div>
+                        <div className="m-2">
+                            <div className="text-slate-300 m-1 select-none">
+                                <label htmlFor="linkedin">Linkedin Link</label>
+                            </div>
+                            <div className="flex">
+                                <input type="text" id="linkedin" value={linkedin} placeholder="Enter your Linkedin profile link if any ..." className={isReadOnly ? `w-72 h-8 outline-none p-1 bg-gray-400 placeholder:text-gray-700 placeholder:select-none cursor-pointer` : `w-72 h-8 outline-none p-1 bg-gray-300 placeholder:text-gray-500 placeholder:select-none`} onChange={(e) => setLinkedin(e.target.value)} readOnly={isReadOnly}/>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div className="m-2">
+                            <div className="text-slate-300 m-1 select-none">
+                                <label htmlFor="twitter">Twitter Link</label>
+                            </div>
+                            <div className="flex">
+                                <input type="text" id="twitter" value={twitter} placeholder="Enter your twitter profile link if any ..." className={isReadOnly ? `w-72 h-8 outline-none p-1 bg-gray-400 placeholder:text-gray-700 placeholder:select-none cursor-pointer` : `w-72 h-8 outline-none p-1 bg-gray-300 placeholder:text-gray-500 placeholder:select-none`} onChange={(e) => setTwitter(e.target.value)} readOnly={isReadOnly}/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="text-red-500">
+                    {error}
                 </div>
                 <div>
                     <button className="p-2 m-2 bg-slate-800 w-72 border-2 border-slate-500 text-white text-lg select-none" onClick={submitDetails}>
